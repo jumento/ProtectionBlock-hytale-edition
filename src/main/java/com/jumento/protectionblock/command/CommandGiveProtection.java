@@ -1,6 +1,5 @@
 package com.jumento.protectionblock.command;
 
-import com.jumento.protectionblock.manager.ProtectionManager;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractAsyncCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
@@ -9,11 +8,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class CommandGiveProtection extends AbstractAsyncCommand {
 
-    private final ProtectionManager protectionManager;
-
-    public CommandGiveProtection(ProtectionManager protectionManager) {
+    public CommandGiveProtection() {
         super("giveprotection", "Gives a protection block");
-        this.protectionManager = protectionManager;
     }
 
     @Override

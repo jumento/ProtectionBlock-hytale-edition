@@ -34,7 +34,7 @@ public class ProtectionBlockMod extends JavaPlugin {
         this.getEventRegistry().registerGlobal(PlayerInteractEvent.class, listener::onInteract);
 
         // Register Commands
-        this.getCommandRegistry().registerCommand(new CommandGiveProtection(protectionManager));
+        this.getCommandRegistry().registerCommand(new CommandGiveProtection());
 
         System.out.println("ProtectionBlock Mod Enabled!");
     }
