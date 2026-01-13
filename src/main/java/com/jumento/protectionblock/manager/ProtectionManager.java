@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-// Hypothetical imports
-import net.hytale.api.math.vector.Vector3i;
-import net.hytale.api.entity.Player;
+// Imports from new package
+import com.hypixel.hytale.math.vector.Vector3i;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 
 public class ProtectionManager {
     private final Set<ProtectedRegion> regions = new HashSet<>();

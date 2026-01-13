@@ -1,28 +1,33 @@
 package com.jumento.protectionblock.command;
 
-// Hypothetical imports
-import net.hytale.api.command.Command;
+import com.jumento.protectionblock.manager.ProtectionManager;
+import com.hypixel.hytale.server.core.command.system.basecommands.AbstractAsyncCommand;
+import com.hypixel.hytale.server.core.command.system.CommandContext;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.entity.entities.Player;
+import java.util.concurrent.CompletableFuture;
 
-import net.hytale.api.command.CommandSender;
-import net.hytale.api.entity.Player;
-import net.hytale.api.inventory.ItemStack;
+public class CommandGiveProtection extends AbstractAsyncCommand {
 
-public class CommandGiveProtection extends Command {
+    private final ProtectionManager protectionManager;
 
-    public CommandGiveProtection() {
-        super("giveprotection", "Give yourself a protection block", "/giveprotection", "gp");
+    public CommandGiveProtection(ProtectionManager protectionManager) {
+        super("giveprotection", "Gives a protection block");
+        this.protectionManager = protectionManager;
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            // Hypothethical item giving
-            ItemStack protectionBlockItem = new ItemStack("protection_block:core", 1);
-            player.getInventory().addItem(protectionBlockItem);
-            player.sendMessage("You received a Protection Block!");
-        } else {
+    protected CompletableFuture<Void> executeAsync(CommandContext context) {
+        CommandSender sender = context.sender();
+
+        if (!(sender instanceof Player)) {
             sender.sendMessage("Only players can use this command.");
+            return CompletableFuture.completedFuture(null);
         }
+
+        Player player = (Player) sender;
+        // Logic to give block... for now just message
+        player.sendMessage("You have received a Protection Block! (Logic pending)");
+        return CompletableFuture.completedFuture(null);
     }
 }

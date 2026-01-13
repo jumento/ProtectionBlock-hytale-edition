@@ -1,4 +1,4 @@
-package net.hytale.api.math.vector;
+package com.hypixel.hytale.math.vector;
 
 public class Vector3i {
     public int x, y, z;

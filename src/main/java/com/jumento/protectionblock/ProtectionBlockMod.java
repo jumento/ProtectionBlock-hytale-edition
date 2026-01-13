@@ -7,8 +7,12 @@ import com.jumento.protectionblock.command.CommandGiveProtection;
 // Hypothetical imports
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import net.hytale.api.event.EventBus;
-import net.hytale.api.registry.CommandRegistry;
+// import net.hytale.api.event.EventBus; // Remove old import
+// import net.hytale.api.registry.CommandRegistry; // Remove old import
+
+import com.hypixel.hytale.server.core.event.events.player.PlayerInteractEvent;
+import com.hypixel.hytale.server.core.event.events.block.BlockPlaceEvent;
+import com.hypixel.hytale.server.core.event.events.block.BlockBreakEvent;
 
 public class ProtectionBlockMod extends JavaPlugin {
     private static ProtectionBlockMod instance;
@@ -22,12 +26,15 @@ public class ProtectionBlockMod extends JavaPlugin {
     protected void setup() {
         instance = this;
         protectionManager = new ProtectionManager();
+        ProtectionListener listener = new ProtectionListener(protectionManager);
 
         // Register Listeners
-        EventBus.register(new ProtectionListener(protectionManager));
+        this.getEventRegistry().registerGlobal(BlockPlaceEvent.class, listener::onBlockPlace);
+        this.getEventRegistry().registerGlobal(BlockBreakEvent.class, listener::onBlockBreak);
+        this.getEventRegistry().registerGlobal(PlayerInteractEvent.class, listener::onInteract);
 
         // Register Commands
-        CommandRegistry.registerCommand(new CommandGiveProtection());
+        this.getCommandRegistry().registerCommand(new CommandGiveProtection(protectionManager));
 
         System.out.println("ProtectionBlock Mod Enabled!");
     }

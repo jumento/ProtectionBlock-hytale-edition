@@ -3,20 +3,19 @@ package com.jumento.protectionblock.listener;
 import com.jumento.protectionblock.manager.ProtectionManager;
 
 // Hypothetical imports
-import net.hytale.api.event.Listener;
-import net.hytale.api.event.EventHandler;
-import net.hytale.api.event.block.BlockBreakEvent;
-import net.hytale.api.event.block.BlockPlaceEvent;
-import net.hytale.api.event.player.PlayerInteractEvent;
+import com.hypixel.hytale.server.core.event.events.block.BlockPlaceEvent;
+import com.hypixel.hytale.server.core.event.events.block.BlockBreakEvent;
+import com.hypixel.hytale.server.core.event.events.player.PlayerInteractEvent;
+import com.hypixel.hytale.math.vector.Vector3i;
 
-public class ProtectionListener implements Listener {
+public class ProtectionListener {
     private final ProtectionManager protectionManager;
 
     public ProtectionListener(ProtectionManager protectionManager) {
         this.protectionManager = protectionManager;
     }
 
-    @EventHandler
+    // Event Handlers
     public void onBlockPlace(BlockPlaceEvent event) {
         // Check if the block being placed is the protection block
         // Assuming block ID "protection_block:core"
@@ -32,7 +31,6 @@ public class ProtectionListener implements Listener {
         }
     }
 
-    @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (!protectionManager.canInteract(event.getPlayer(), event.getLocation())) {
             event.setCancelled(true);
@@ -40,7 +38,6 @@ public class ProtectionListener implements Listener {
         }
     }
 
-    @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if (event.getTargetBlock() != null) {
             if (!protectionManager.canInteract(event.getPlayer(), event.getTargetBlock().getLocation())) {
