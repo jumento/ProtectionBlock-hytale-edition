@@ -2,7 +2,7 @@ package com.jumento.protectionblock.command;
 
 // Hypothetical imports
 import net.hytale.api.command.Command;
-import net.hytale.api.command.CommandExecutor;
+
 import net.hytale.api.command.CommandSender;
 import net.hytale.api.entity.Player;
 import net.hytale.api.inventory.ItemStack;

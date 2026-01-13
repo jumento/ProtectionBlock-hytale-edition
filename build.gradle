@@ -8,15 +8,16 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
     // Placeholder for Hytale Maven Repo
-    maven {
-        name = "Hytale"
-        url = "https://repo.hytale.com/public/maven/"
-    }
+    // maven {
+    //     name = "Hytale"
+    //     url = "https://repo.hytale.com/public/maven/"
+    // }
 }
 
 dependencies {
     // Placeholder for Hytale Server API
-    compileOnly 'net.hytale:hytale-server-api:1.0.0-SNAPSHOT'
+    // Placeholder for Hytale Server API
+    // compileOnly 'net.hytale:hytale-server-api:1.0.0-SNAPSHOT'
     
     // Test dependencies
     testImplementation platform('org.junit:junit-bom:5.9.1')
@@ -26,7 +27,7 @@ dependencies {
 java {
     toolchain {
         // Hytale is expected to use a modern Java version
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 

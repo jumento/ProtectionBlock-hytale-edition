@@ -8,7 +8,6 @@ import net.hytale.api.event.EventHandler;
 import net.hytale.api.event.block.BlockBreakEvent;
 import net.hytale.api.event.block.BlockPlaceEvent;
 import net.hytale.api.event.player.PlayerInteractEvent;
-import net.hytale.api.block.Block;
 
 public class ProtectionListener implements Listener {
     private final ProtectionManager protectionManager;
