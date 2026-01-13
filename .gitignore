@@ -24,3 +24,6 @@ javap_output.txt
 
 # Reference files
 .ref/
+
+# Local dependencies (place HytaleServer.jar here)
+libs/*.jar
