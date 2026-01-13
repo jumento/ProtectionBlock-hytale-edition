@@ -11,7 +11,8 @@ repositories {
 }
 
 dependencies {
-
+    // Hytale Server SDK
+    implementation(files(System.getProperty("user.home") + "/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar"))
     
     // Test dependencies
     testImplementation platform('org.junit:junit-bom:5.9.1')
