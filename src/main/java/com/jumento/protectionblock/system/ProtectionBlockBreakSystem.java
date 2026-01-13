@@ -10,6 +10,7 @@ import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EntityEventSystem;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.BreakBlockEvent;
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.jumento.protectionblock.manager.ProtectionManager;
@@ -30,12 +31,13 @@ public class ProtectionBlockBreakSystem extends EntityEventSystem<EntityStore, B
             CommandBuffer<EntityStore> commandBuffer, BreakBlockEvent event) {
         Ref<EntityStore> ref = archetypeChunk.getReferenceTo(index);
         Player player = store.getComponent(ref, Player.getComponentType());
+        PlayerRef playerRef = store.getComponent(ref, PlayerRef.getComponentType());
 
-        if (event.getTargetBlock() != null) {
-            if (!protectionManager.canInteract(player, new com.hypixel.hytale.math.vector.Vector3i(
+        if (playerRef != null && event.getTargetBlock() != null) {
+            if (!protectionManager.canInteract(playerRef.getUuid(), new com.hypixel.hytale.math.vector.Vector3i(
                     event.getTargetBlock().getX(), event.getTargetBlock().getY(), event.getTargetBlock().getZ()))) {
                 event.setCancelled(true);
-                player.sendMessage("You cannot break blocks here!");
+                player.sendMessage(Message.raw("You cannot break blocks here!"));
             }
         }
     }

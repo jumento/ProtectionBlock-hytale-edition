@@ -24,10 +24,10 @@ public class ProtectionManager {
         return false;
     }
 
-    public boolean canInteract(Player player, Vector3i position) {
+    public boolean canInteract(java.util.UUID playerUuid, Vector3i position) {
         for (ProtectedRegion region : regions) {
             if (region.contains(position)) {
-                return region.isOwner(player.getUniqueId());
+                return region.isOwner(playerUuid);
             }
         }
         return true; // Not protected

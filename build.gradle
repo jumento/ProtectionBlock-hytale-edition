@@ -21,8 +21,8 @@ dependencies {
 
 java {
     toolchain {
-        // Hytale is expected to use a modern Java version
-        languageVersion = JavaLanguageVersion.of(17)
+        // Hytale Server uses Java 25 (matching SimpleClaims)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 

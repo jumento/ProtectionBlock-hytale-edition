@@ -1,9 +1,26 @@
+# Gradle
 .gradle/
 build/
 out/
 bin/
+
+# Compiled files
 *.class
+
+# Logs
 *.log
+build_log.txt
+build_error.log
+final_build.log
+javap_output.txt
+
+# IDE
 .idea/
 *.iml
+.vscode/
+
+# OS
 .DS_Store
+
+# Reference files
+.ref/
