@@ -11,11 +11,63 @@ repositories {
 }
 
 dependencies {
-    // Hytale Server SDK
-    // Use custom path from gradle.properties, environment variable, or default Windows location
-    def hytaleJarPath = project.findProperty('hytaleServerJar') ?: 
-                        System.getenv('HYTALE_SERVER_JAR') ?: 
-                        "${System.getProperty('user.home')}/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar"
+    // Hytale Server SDK - Auto-detection
+    def hytaleJarPath = null
+    
+    // Priority 1: Explicit configuration (gradle.properties or environment variable)
+    if (project.hasProperty('hytaleServerJar')) {
+        hytaleJarPath = project.property('hytaleServerJar')
+    } else if (System.getenv('HYTALE_SERVER_JAR')) {
+        hytaleJarPath = System.getenv('HYTALE_SERVER_JAR')
+    } else {
+        // Priority 2: Auto-detect in common locations
+        def searchPaths = [
+            // Linux common locations
+            '/home/aqua/hytale/Server/HytaleServer.jar',
+            "${System.getProperty('user.home')}/hytale/Server/HytaleServer.jar",
+            // Windows common locations
+            "${System.getProperty('user.home')}/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar",
+            // Relative to project (if server is installed locally)
+            '../Server/HytaleServer.jar',
+            '../../Server/HytaleServer.jar',
+            './Server/HytaleServer.jar'
+        ]
+        
+        for (path in searchPaths) {
+            def f = file(path)
+            if (f.exists()) {
+                hytaleJarPath = path
+                println "✅ Auto-detected HytaleServer.jar at: ${path}"
+                break
+            }
+        }
+    }
+    
+    // Validate that we found the JAR
+    if (hytaleJarPath == null) {
+        throw new GradleException("""
+╔════════════════════════════════════════════════════════════════════════════╗
+║ ERROR: HytaleServer.jar not found!                                         ║
+╠════════════════════════════════════════════════════════════════════════════╣
+║ The build requires HytaleServer.jar to compile.                           ║
+║                                                                            ║
+║ Solution 1 (Recommended): Place HytaleServer.jar in a standard location   ║
+║   • Linux:   /home/aqua/hytale/Server/HytaleServer.jar                    ║
+║   • Windows: %APPDATA%/Roaming/Hytale/install/.../Server/HytaleServer.jar ║
+║                                                                            ║
+║ Solution 2: Set the path in gradle.properties:                            ║
+║   hytaleServerJar=/path/to/HytaleServer.jar                               ║
+║                                                                            ║
+║ Solution 3: Set environment variable:                                     ║
+║   export HYTALE_SERVER_JAR=/path/to/HytaleServer.jar                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+        """)
+    }
+    
+    if (!file(hytaleJarPath).exists()) {
+        throw new GradleException("ERROR: HytaleServer.jar not found at: ${hytaleJarPath}")
+    }
+    
     implementation(files(hytaleJarPath))
     
     // Test dependencies

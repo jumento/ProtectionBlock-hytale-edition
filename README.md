@@ -4,7 +4,7 @@ A server-side mod for Hytale that adds protection blocks, similar to Minecraft's
 
 ## Features
 
-- Special protection blocks that can only be obtained via console command
+- Special protection blocks obtainable only via console command
 - 20x20 protected areas around placed protection blocks
 - Prevents unauthorized players from:
   - Breaking blocks
@@ -16,35 +16,53 @@ A server-side mod for Hytale that adds protection blocks, similar to Minecraft's
 
 ### Prerequisites
 
-- Java 25 JDK
+- Java 25 JDK (or Java 21+ for compatibility)
 - Gradle
 - HytaleServer.jar
 
-### Configuration
+### Quick Start
 
-**Windows:** The build is pre-configured to use the default Hytale installation path.
+**The build system automatically detects HytaleServer.jar** in common locations:
 
-**Linux/Custom Path:**
+**Linux:**
 
-Option 1 - Edit `gradle.properties`:
+- `/home/aqua/hytale/Server/HytaleServer.jar`
+- `~/hytale/Server/HytaleServer.jar`
 
-```properties
-hytaleServerJar=/path/to/your/HytaleServer.jar
-```
+**Windows:**
 
-Option 2 - Set environment variable:
+- `%APPDATA%/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar`
 
-```bash
-export HYTALE_SERVER_JAR=/path/to/your/HytaleServer.jar
-```
-
-### Building the Mod
+Simply run:
 
 ```bash
 gradle build
 ```
 
-The compiled JAR will be in `build/libs/ProtectionBlock-hytale-edition-1.0-SNAPSHOT.jar`
+### Custom HytaleServer.jar Location
+
+If your `HytaleServer.jar` is in a different location, you have two options:
+
+**Option 1** - Edit `gradle.properties`:
+
+```properties
+hytaleServerJar=/path/to/your/HytaleServer.jar
+```
+
+**Option 2** - Set environment variable:
+
+```bash
+export HYTALE_SERVER_JAR=/path/to/your/HytaleServer.jar
+gradle build
+```
+
+### Build Output
+
+The compiled JAR will be in:
+
+```
+build/libs/ProtectionBlock-hytale-edition-1.0-SNAPSHOT.jar
+```
 
 ## Installation
 
@@ -54,6 +72,17 @@ The compiled JAR will be in `build/libs/ProtectionBlock-hytale-edition-1.0-SNAPS
 ## Commands
 
 - `/giveprotection <player>` - Give a protection block to a player (console only)
+
+## Linux Server Setup (Automated)
+
+For quick setup on Linux servers:
+
+```bash
+git clone <repository-url>
+cd ProtectionBlock-hytale-edition
+chmod +x setup_linux.sh
+./setup_linux.sh
+```
 
 ## License
 
