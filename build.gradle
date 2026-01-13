@@ -29,6 +29,10 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+jar {
+    exclude 'net/hytale/**'
+}
+
 test {
     useJUnitPlatform()
 }
