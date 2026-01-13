@@ -29,23 +29,13 @@ public class ProtectionBlockMod extends JavaPlugin {
         ProtectionListener listener = new ProtectionListener(protectionManager);
 
         // Register Listeners
-        // DEBUGGING: Print all methods
-        // DEBUGGING: Print all methods and return types
-        System.out.println("DEBUGGING: Printing available methods for " + this.getClass().getSuperclass().getName());
-        for (java.lang.reflect.Method method : this.getClass().getSuperclass().getMethods()) {
-            System.out.println("METHOD: " + method.getName() + " -> " + method.getReturnType().getName());
-        }
-
         // Register Listeners
-        // this.getEventRegistry().registerGlobal(BlockPlaceEvent.class,
-        // listener::onBlockPlace);
-        // this.getEventRegistry().registerGlobal(BlockBreakEvent.class,
-        // listener::onBlockBreak);
-        // this.getEventRegistry().registerGlobal(PlayerInteractEvent.class,
-        // listener::onInteract);
+        this.getEventRegistry().registerGlobal(BlockPlaceEvent.class, listener::onBlockPlace);
+        this.getEventRegistry().registerGlobal(BlockBreakEvent.class, listener::onBlockBreak);
+        this.getEventRegistry().registerGlobal(PlayerInteractEvent.class, listener::onInteract);
 
         // Register Commands
-        // this.getCommandRegistry().registerCommand(new CommandGiveProtection());
+        this.getCommandRegistry().registerCommand(new CommandGiveProtection());
 
         System.out.println("ProtectionBlock Mod Enabled!");
     }
