@@ -14,22 +14,34 @@ A server-side mod for Hytale that adds protection blocks, similar to Minecraft's
 
 ## Building
 
-### Prerequisites
-
-- Java 25 JDK (or Java 21+ for compatibility)
-- Gradle
-
-### Setup
-
-1. Clone the repository
-2. Copy `HytaleServer.jar` into the `libs/` directory
-3. Run the build:
+Just like Minecraft mods:
 
 ```bash
+git clone <repository-url>
+cd ProtectionBlock-hytale-edition
 gradle build
 ```
 
-The compiled JAR will be in `build/libs/ProtectionBlock-hytale-edition-1.0-SNAPSHOT.jar`
+That's it! The build automatically finds and copies `HytaleServer.jar` from your Hytale installation.
+
+### Prerequisites
+
+- Java 21+ (Java 25 recommended)
+- Gradle
+- Hytale Server installed in a standard location
+
+The build searches these locations automatically:
+
+- **Linux:** `/home/aqua/hytale/Server/HytaleServer.jar` or `~/hytale/Server/HytaleServer.jar`
+- **Windows:** `%APPDATA%/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar`
+
+### Build Output
+
+The compiled JAR will be in:
+
+```
+build/libs/ProtectionBlock-hytale-edition-1.0-SNAPSHOT.jar
+```
 
 ## Installation
 

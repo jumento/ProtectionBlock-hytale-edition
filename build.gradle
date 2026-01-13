@@ -10,8 +10,61 @@ repositories {
 
 }
 
+// Auto-copy HytaleServer.jar before compilation (like Minecraft dependency management)
+task copyHytaleJar {
+    doLast {
+        def libsDir = file('libs')
+        if (!libsDir.exists()) {
+            libsDir.mkdirs()
+        }
+        
+        def targetJar = file('libs/HytaleServer.jar')
+        if (targetJar.exists()) {
+            println "✅ HytaleServer.jar already in libs/"
+            return
+        }
+        
+        // Search common locations
+        def searchPaths = [
+            '/home/aqua/hytale/Server/HytaleServer.jar',
+            "${System.getProperty('user.home')}/hytale/Server/HytaleServer.jar",
+            "${System.getProperty('user.home')}/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar"
+        ]
+        
+        for (path in searchPaths) {
+            def sourceJar = file(path)
+            if (sourceJar.exists()) {
+                println "✅ Copying HytaleServer.jar from: ${path}"
+                java.nio.file.Files.copy(
+                    sourceJar.toPath(), 
+                    targetJar.toPath(), 
+                    java.nio.file.StandardCopyOption.REPLACE_EXISTING
+                )
+                return
+            }
+        }
+        
+        throw new GradleException("""
+╔════════════════════════════════════════════════════════════════════════════╗
+║ ERROR: HytaleServer.jar not found in any standard location!               ║
+╠════════════════════════════════════════════════════════════════════════════╣
+║ Searched locations:                                                        ║
+║   • /home/aqua/hytale/Server/HytaleServer.jar                             ║
+║   • ~/hytale/Server/HytaleServer.jar                                      ║
+║   • %APPDATA%/Hytale/install/.../Server/HytaleServer.jar                  ║
+║                                                                            ║
+║ Solution: Place HytaleServer.jar in one of these locations                ║
+║   OR manually copy it to: libs/HytaleServer.jar                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+        """)
+    }
+}
+
+// Make compilation depend on having the JAR
+tasks.compileJava.dependsOn(copyHytaleJar)
+
 dependencies {
-    // Hytale Server SDK (place HytaleServer.jar in libs/ directory)
+    // Hytale Server SDK (automatically copied to libs/)
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     
     // Test dependencies
