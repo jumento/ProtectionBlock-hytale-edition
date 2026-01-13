@@ -12,7 +12,11 @@ repositories {
 
 dependencies {
     // Hytale Server SDK
-    implementation(files(System.getProperty("user.home") + "/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar"))
+    // Use custom path from gradle.properties, environment variable, or default Windows location
+    def hytaleJarPath = project.findProperty('hytaleServerJar') ?: 
+                        System.getenv('HYTALE_SERVER_JAR') ?: 
+                        "${System.getProperty('user.home')}/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar"
+    implementation(files(hytaleJarPath))
     
     // Test dependencies
     testImplementation platform('org.junit:junit-bom:5.9.1')

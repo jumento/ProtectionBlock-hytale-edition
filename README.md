@@ -1,44 +1,60 @@
-# ProtectionBlock (Hytale Edition)
+# ProtectionBlock - Hytale Edition
 
-A Hytale server-side mod that adds a protection block (similar to ProtectionStones in Minecraft).
-
-## Project Structure
-
-This project includes **local stubs** for the Hytale Server API (`net.hytale.api`) to allow compilation and development before the official API is public.
-
-## Prerequisites
-
-- **Java JDK 17** (Required)
-- Gradle (optional, wrapper provided if initialized, otherwise use local gradle)
-
-## How to Build
-
-1. **Clone the repository**:
-
-    ```bash
-    git clone <repository-url>
-    cd ProtectionBlock-hytale-edition
-    ```
-
-2. **Compile the mod**:
-    If you have Gradle installed globally:
-
-    ```bash
-    gradle build
-    ```
-
-    *Note: The `gradlew` wrapper script is not currently committed. Use your local gradle installation.*
-
-3. **Output**:
-    The compiled JAR file will be located in:
-    `build/libs/ProtectionBlock-hytale-edition-1.0-SNAPSHOT.jar`
+A server-side mod for Hytale that adds protection blocks, similar to Minecraft's ProtectionStones.
 
 ## Features
 
-- **Protection Block**: A special block that protects a 20x20 area around it.
-- **Commands**:
-  - `/giveprotection` (alias `/gp`): Gives the player a protection block.
-- **Protection Logic**:
-  - Prevents other players from breaking blocks in the protected area.
-  - Prevents other players from placing blocks in the protected area.
-  - Prevents other players from interacting with blocks in the protected area.
+- Special protection blocks that can only be obtained via console command
+- 20x20 protected areas around placed protection blocks
+- Prevents unauthorized players from:
+  - Breaking blocks
+  - Placing blocks
+  - Interacting with objects (F key)
+- Only the block owner can modify the protected area
+
+## Building
+
+### Prerequisites
+
+- Java 25 JDK
+- Gradle
+- HytaleServer.jar
+
+### Configuration
+
+**Windows:** The build is pre-configured to use the default Hytale installation path.
+
+**Linux/Custom Path:**
+
+Option 1 - Edit `gradle.properties`:
+
+```properties
+hytaleServerJar=/path/to/your/HytaleServer.jar
+```
+
+Option 2 - Set environment variable:
+
+```bash
+export HYTALE_SERVER_JAR=/path/to/your/HytaleServer.jar
+```
+
+### Building the Mod
+
+```bash
+gradle build
+```
+
+The compiled JAR will be in `build/libs/ProtectionBlock-hytale-edition-1.0-SNAPSHOT.jar`
+
+## Installation
+
+1. Place the compiled JAR in your Hytale server's `mods` folder
+2. Start or restart your server
+
+## Commands
+
+- `/giveprotection <player>` - Give a protection block to a player (console only)
+
+## License
+
+MIT License
