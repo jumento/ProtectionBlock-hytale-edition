@@ -5,7 +5,8 @@ import com.jumento.protectionblock.listener.ProtectionListener;
 import com.jumento.protectionblock.command.CommandGiveProtection;
 
 // Hypothetical imports
-import net.hytale.api.JavaPlugin;
+import com.hypixel.hytale.server.core.plugin.JavaPlugin;
+import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import net.hytale.api.event.EventBus;
 import net.hytale.api.registry.CommandRegistry;
 
@@ -13,8 +14,12 @@ public class ProtectionBlockMod extends JavaPlugin {
     private static ProtectionBlockMod instance;
     private ProtectionManager protectionManager;
 
+    public ProtectionBlockMod(JavaPluginInit init) {
+        super(init);
+    }
+
     @Override
-    public void onEnable() {
+    protected void setup() {
         instance = this;
         protectionManager = new ProtectionManager();
 
