@@ -20,4 +20,8 @@ public abstract class JavaPlugin {
     public EventRegistry getEventRegistry() {
         return new EventRegistry();
     }
+
+    public com.hypixel.hytale.component.ComponentRegistryProxy getEntityStoreRegistry() {
+        return new com.hypixel.hytale.component.ComponentRegistryProxy();
+    }
 }
