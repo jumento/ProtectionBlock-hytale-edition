@@ -1,8 +1,9 @@
 {
     "id": "protection_block",
-    "name": "Protection Block",
-    "version": "1.0.0",
-    "description": "Adds a block that protects a 20x20 area.",
+    "Name": "Protection Block",
+    "Group": "com.jumento",
+    "Version": "1.0.0",
+    "Description": "Adds a block that protects a 20x20 area.",
     "Main": "com.jumento.protectionblock.ProtectionBlockMod",
     "schemaVersion": 1
 }
