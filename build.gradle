@@ -7,17 +7,11 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    // Placeholder for Hytale Maven Repo
-    // maven {
-    //     name = "Hytale"
-    //     url = "https://repo.hytale.com/public/maven/"
-    // }
+
 }
 
 dependencies {
-    // Placeholder for Hytale Server API
-    // Placeholder for Hytale Server API
-    // compileOnly 'net.hytale:hytale-server-api:1.0.0-SNAPSHOT'
+
     
     // Test dependencies
     testImplementation platform('org.junit:junit-bom:5.9.1')
