@@ -5,11 +5,11 @@ import com.jumento.protectionblock.listener.ProtectionListener;
 import com.jumento.protectionblock.command.CommandGiveProtection;
 
 // Hypothetical imports
-import net.hytale.api.HytaleMod;
+import net.hytale.api.JavaPlugin;
 import net.hytale.api.event.EventBus;
 import net.hytale.api.registry.CommandRegistry;
 
-public class ProtectionBlockMod implements HytaleMod {
+public class ProtectionBlockMod extends JavaPlugin {
     private static ProtectionBlockMod instance;
     private ProtectionManager protectionManager;
 
