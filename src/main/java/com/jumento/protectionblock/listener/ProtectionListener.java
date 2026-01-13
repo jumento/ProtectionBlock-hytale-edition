@@ -6,7 +6,6 @@ import com.jumento.protectionblock.manager.ProtectionManager;
 import com.hypixel.hytale.server.core.event.events.block.BlockPlaceEvent;
 import com.hypixel.hytale.server.core.event.events.block.BlockBreakEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerInteractEvent;
-import com.hypixel.hytale.math.vector.Vector3i;
 
 public class ProtectionListener {
     private final ProtectionManager protectionManager;
