@@ -72,13 +72,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-java {
-    toolchain {
-        // Hytale Server uses Java 25 (matching SimpleClaims)
-        languageVersion = JavaLanguageVersion.of(25)
-    }
-}
-
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
