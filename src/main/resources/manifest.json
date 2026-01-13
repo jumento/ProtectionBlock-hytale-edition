@@ -3,6 +3,6 @@
     "name": "Protection Block",
     "version": "1.0.0",
     "description": "Adds a block that protects a 20x20 area.",
-    "entrypoint": "com.jumento.protectionblock.ProtectionBlockMod",
+    "Main": "com.jumento.protectionblock.ProtectionBlockMod",
     "schemaVersion": 1
 }
